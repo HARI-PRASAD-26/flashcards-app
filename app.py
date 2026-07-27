@@ -1,3 +1,6 @@
+import os
+os.environ["PYTHONIOENCODING"] = "utf-8"
+
 import streamlit as st
 import openai
 import os
