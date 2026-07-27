@@ -2,14 +2,14 @@ import streamlit as st
 import openai
 import os
 
-# ✅ Securely load your API key from Streamlit Secrets
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# ✅ Create a client using the new API
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # 🧠 Function to generate flashcards
 def generate_flashcards(notes, num_cards):
     prompt = f"Create {num_cards} educational flashcards from the following notes:\n{notes}\nFormat each flashcard as 'Q: question' and 'A: answer'."
 
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a helpful assistant that creates clear, concise educational flashcards."},
