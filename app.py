@@ -2,7 +2,9 @@ import streamlit as st
 import openai
 
 # Replace with your API key
-openai.api_key = "YOUR_API_KEY"
+import os
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 
 st.title("AI Flashcard Generator")
 st.write("Paste your notes and get instant flashcards!")
