@@ -1,3 +1,11 @@
+import sys, os
+os.environ["PYTHONIOENCODING"] = "utf-8"
+sys.stdout.reconfigure(encoding="utf-8")
+sys.stderr.reconfigure(encoding="utf-8")
+for card in flashcards:
+    safe_card = card.encode("utf-8", "ignore").decode("utf-8")
+    st.write(safe_card)
+
 import os
 import sys
 import streamlit as st
