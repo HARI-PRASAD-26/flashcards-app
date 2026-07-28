@@ -1,14 +1,19 @@
+import sys
 import os
+
+# Force UTF-8 everywhere
 os.environ["PYTHONIOENCODING"] = "utf-8"
+sys.stdout.reconfigure(encoding='utf-8')
+sys.stderr.reconfigure(encoding='utf-8')
 
 import streamlit as st
 import openai
 import os
 
-# ✅ Create a client using the new API
+#  Create a client using the new API
 client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# 🧠 Function to generate flashcards
+#  Function to generate flashcards
 def generate_flashcards(notes, num_cards):
     prompt = f"Create {num_cards} educational flashcards from the following notes:\n{notes}\nFormat each flashcard as 'Q: question' and 'A: answer'."
 
@@ -24,7 +29,7 @@ def generate_flashcards(notes, num_cards):
     flashcards_text = response.choices[0].message.content
     return flashcards_text
 
-# 🎨 Streamlit UI
+#  Streamlit UI
 st.set_page_config(page_title="AI Flashcard Generator", page_icon="🧠", layout="centered")
 st.title("AI Flashcard Generator")
 st.write("Paste your notes and get instant flashcards!")
